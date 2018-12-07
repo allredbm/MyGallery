@@ -19,12 +19,12 @@ public class UserController {
 	
 	@GetMapping("/about")
 	public String about() {
-		return "User/About-us.html";
+		return "User/about-us.html";
 	}
 	
 	@GetMapping("/contact")
 	public String contact() {
-		return "User/Contact.html";
+		return "User/contact.html";
 	}
 	
 	@GetMapping("/user")
