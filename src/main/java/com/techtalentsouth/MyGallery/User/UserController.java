@@ -11,22 +11,23 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
+		
 	@GetMapping("/")
 	public String index(User user) {
 		return "User/index.html";
 	}
 	
 	@GetMapping("/user")
-	public String user(User user) {
+	public String user(User user, Model model) {
+		model.addAttribute("users", userRepository.findAll());
+		
 		return "User/user-main.html";
 	}
 	
-	@PostMapping(value="/")
+	@PostMapping(value="/user")
 	public String addNewUser(User user, Model model) {
 		userRepository.save(user);
-		model.addAttribute("firstName", user.getFirstName());
-		model.addAttribute("lastName", user.getLastName());
+		model.addAttribute("name", user.getFirstName() + " " + user.getLastName());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("password", user.getPassword());
 		model.addAttribute("email", user.getEmail());

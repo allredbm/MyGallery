@@ -17,10 +17,26 @@
 	</header>
 	
 	<h1>Users</h1>
+	
+	<table>
+	    <tr>
+	        <th>First Name</th>
+	        <th>Last Name</th>
+	        <th>Username</th>
+	        <th>Email</th>
+	    </tr>
+	    <tr th:each = "user: ${users}">
+	        <td th:text="${user.firstName}"></td>
+	        <td th:text="${user.lastName}"></td>
+	        <td th:text="${user.username}"></td>
+	        <td th:text="${user.email}"></td>
+	    </tr>
+	</table>
+	
 	<h3>Create an account below:</h3>
 	
 	<p>Please use the form below to subscribe</p>
-	<form action="#" th:action="@{/}" th:object="${user}" method="post">
+	<form action="#" th:action="@{/user}" th:object="${user}" method="post">
 		<table>
 			<tr>
 				<td>First Name: </td>
