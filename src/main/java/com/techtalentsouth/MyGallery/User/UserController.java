@@ -37,12 +37,9 @@ public class UserController {
 	@PostMapping(value="/user")
 	public String addNewUser(User user, Model model) {
 		userRepository.save(user);
-		model.addAttribute("name", user.getFirstName() + " " + user.getLastName());
-		model.addAttribute("username", user.getUsername());
-		model.addAttribute("password", user.getPassword());
-		model.addAttribute("email", user.getEmail());
+		model.addAttribute("users", userRepository.findAll());
 		
-		return "User/user-result";
+		return "User/user-main";
 	}
 	
 }
