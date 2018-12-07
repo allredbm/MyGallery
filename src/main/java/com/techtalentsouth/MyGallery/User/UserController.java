@@ -13,8 +13,18 @@ public class UserController {
 	private UserRepository userRepository;
 		
 	@GetMapping("/")
-	public String index(User user) {
+	public String index() {
 		return "User/index.html";
+	}
+	
+	@GetMapping("/about")
+	public String about() {
+		return "User/About-us.html";
+	}
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "User/Contact.html";
 	}
 	
 	@GetMapping("/user")
