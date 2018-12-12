@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
@@ -13,33 +14,41 @@ public class UserController {
 	private UserRepository userRepository;
 		
 	@GetMapping("/")
-	public String index() {
-		return "User/index.html";
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView("User/index.html");
+		
+		return mv;
 	}
 	
 	@GetMapping("/about")
-	public String about() {
-		return "User/about-us.html";
+	public ModelAndView about() {
+		ModelAndView mv = new ModelAndView("User/about-us.html");
+		
+		return mv;
 	}
 	
 	@GetMapping("/contact")
-	public String contact() {
-		return "User/contact.html";
+	public ModelAndView contact() {
+		ModelAndView mv = new ModelAndView("User/contact.html");
+		
+		return mv;
 	}
 	
 	@GetMapping("/user")
-	public String user(User user, Model model) {
-		model.addAttribute("users", userRepository.findAll());
+	public ModelAndView user(User user) {
+		ModelAndView mv = new ModelAndView("User/user-main.html");
+		mv.addObject("users", userRepository.findAll());
 		
-		return "User/user-main.html";
+		return mv;
 	}
 	
 	@PostMapping(value="/user")
-	public String addNewUser(User user, Model model) {
+	public ModelAndView addNewUser(User user, Model model) {
 		userRepository.save(user);
-		model.addAttribute("users", userRepository.findAll());
+		ModelAndView mv = new ModelAndView("User/user-main");
+		mv.addObject("users", userRepository.findAll());
 		
-		return "User/user-main";
+		return mv;
 	}
 	
 }
